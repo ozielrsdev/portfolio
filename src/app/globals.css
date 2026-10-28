@@ -1,1 +1,183 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Tema escuro por classe (.dark no <html>), definido antes da pintura pelo script do layout. */
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design tokens — direção "Campo Aberto" (paleta) + tipografia "Pista".
+ * Valores e regras de uso documentados em DESIGN_SYSTEM.md.
+ * Componentes consomem apenas os utilitários semânticos gerados abaixo (bg-primary, text-muted-foreground...).
+ */
+@theme inline {
+  /* Cores semânticas (padrão shadcn) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Extensões da marca */
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  /* Tipografia */
+  --font-sans: var(--font-barlow);
+  --font-heading: var(--font-barlow-condensed);
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* Raios — base 8px */
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 3);
+  --radius-4xl: calc(var(--radius) * 4);
+}
+
+/* Escala tipográfica modular 1,333 (quarta justa), base 16px. Títulos crescem de forma fluida de 360px a 1440px. */
+@theme {
+  --text-display: clamp(2.75rem, 1.9rem + 3.8vw, 4.209rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: 0.005em;
+  --text-h1: clamp(2.369rem, 1.9rem + 2vw, 3.157rem);
+  --text-h1--line-height: 1;
+  --text-h2: clamp(1.777rem, 1.45rem + 1.4vw, 2.369rem);
+  --text-h2--line-height: 1.05;
+  --text-h3: 1.777rem;
+  --text-h3--line-height: 1.1;
+  --text-lead: 1.333rem;
+  --text-lead--line-height: 1.5;
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+
+  --shadow-card: 0 1px 2px rgb(28 25 23 / 0.06), 0 12px 32px -16px rgb(28 25 23 / 0.22);
+  --shadow-card-hover: 0 2px 4px rgb(28 25 23 / 0.08), 0 20px 40px -18px rgb(28 25 23 / 0.32);
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --animate-rise: rise 0.5s var(--ease-out-quart) both;
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --background: #fafaf9;
+  --foreground: #0c0a09;
+  --card: #ffffff;
+  --card-foreground: #0c0a09;
+  --popover: #ffffff;
+  --popover-foreground: #0c0a09;
+  --primary: #1f7a3a;
+  --primary-foreground: #ffffff;
+  --secondary: #1e3a8a;
+  --secondary-foreground: #ffffff;
+  --muted: #f5f5f4;
+  --muted-foreground: #57534e;
+  --accent: #f5f5f4;
+  --accent-foreground: #0c0a09;
+  --destructive: #b91c1c;
+  --border: #e7e5e4;
+  --input: #78716c;
+  --ring: #1f7a3a;
+
+  --highlight: #facc15;
+  --highlight-foreground: #0c0a09;
+  --success: #1f7a3a;
+  --warning: #b45309;
+}
+
+.dark {
+  --background: #0c0a09;
+  --foreground: #fafaf9;
+  --card: #1c1917;
+  --card-foreground: #fafaf9;
+  --popover: #1c1917;
+  --popover-foreground: #fafaf9;
+  --primary: #4ade80;
+  --primary-foreground: #0c0a09;
+  --secondary: #93b4f5;
+  --secondary-foreground: #0c0a09;
+  --muted: #292524;
+  --muted-foreground: #a8a29e;
+  --accent: #292524;
+  --accent-foreground: #fafaf9;
+  --destructive: #f87171;
+  --border: #292524;
+  --input: #78716c;
+  --ring: #4ade80;
+
+  --highlight: #fde047;
+  --highlight-foreground: #0c0a09;
+  --success: #4ade80;
+  --warning: #fbbf24;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    color-scheme: light;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-heading font-bold uppercase text-balance;
+  }
+  ::selection {
+    @apply bg-highlight text-highlight-foreground;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  /* Âncoras não ficam escondidas sob a navbar fixa. */
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
