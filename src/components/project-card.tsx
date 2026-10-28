@@ -1,6 +1,6 @@
 import { ExternalLinkIcon, FolderGitIcon } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button-variants'
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { TechTag } from '@/components/tech-tag'
 import type { Project } from '@/lib/types'
@@ -20,10 +20,10 @@ export function ProjectCard({ project }: { project: Project }) {
         <CardTitle>
           <h3 className="text-h3">{name}</h3>
         </CardTitle>
-        <CardAction>
+        <CardAction className="row-span-1">
           <Badge variant={role === 'Solo' ? 'highlight' : 'outline'}>{role}</Badge>
         </CardAction>
-        <CardDescription className="text-base">{summary}</CardDescription>
+        <CardDescription className="col-span-full text-base">{summary}</CardDescription>
       </CardHeader>
 
       <CardContent className="flex flex-1 flex-col gap-5">

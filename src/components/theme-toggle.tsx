@@ -1,7 +1,7 @@
 'use client'
 
 import { MoonIcon, SunIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button-variants'
 
 function toggleTheme() {
   const isDark = document.documentElement.classList.toggle('dark')
@@ -12,11 +12,17 @@ function toggleTheme() {
   }
 }
 
+// <button> nativo com o visual do Button: evita carregar o Base UI só para um clique.
 export function ThemeToggle() {
   return (
-    <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Alternar tema claro/escuro">
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label="Alternar tema claro/escuro"
+      className={buttonVariants({ variant: 'ghost', size: 'icon' })}
+    >
       <SunIcon className="hidden dark:block" aria-hidden />
       <MoonIcon className="dark:hidden" aria-hidden />
-    </Button>
+    </button>
   )
 }

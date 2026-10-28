@@ -5,7 +5,8 @@ import { ProjectCard } from '@/components/project-card'
 import { Section } from '@/components/section'
 import { TechTag } from '@/components/tech-tag'
 import { Badge } from '@/components/ui/badge'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button-variants'
 import type { Project } from '@/lib/types'
 
 export const metadata: Metadata = {

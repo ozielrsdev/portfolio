@@ -134,6 +134,27 @@
   --warning: #fbbf24;
 }
 
+/*
+ * Entrada de blocos ao rolar: CSS puro (scroll-driven animations), sem JS.
+ * Só ativa onde há suporte e sem prefers-reduced-motion; fora disso o conteúdo aparece direto.
+ */
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer utilities {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 35%;
+      }
+    }
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

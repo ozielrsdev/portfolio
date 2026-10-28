@@ -53,11 +53,11 @@ Neutros: escala **stone** (cinzas quentes, de terra) do Tailwind, 50–950.
 
 | Papel | Fonte | Pesos | Utilitário |
 |---|---|---|---|
-| Títulos | **Barlow Condensed**: inspirada nas placas de rodovia, legível em velocidade | 600, 700 | `font-heading` (h1–h3 já usam por padrão, em caixa alta) |
-| Texto | **Barlow** | 400, 500, 600 | `font-sans` (padrão) |
-| Código, eyebrows, tags | **JetBrains Mono** | 400, 500 | `font-mono` |
+| Títulos | **Barlow Condensed**: inspirada nas placas de rodovia, legível em velocidade | 700 | `font-heading` (h1–h3 já usam por padrão, em caixa alta) |
+| Texto | **Barlow** | 400, 600 | `font-sans` (padrão) |
+| Código, eyebrows, tags | **JetBrains Mono** | 400 (sem preload) | `font-mono` |
 
-Carregadas com `next/font` (servidas pelo próprio domínio, `font-display: swap`, fallback com métricas ajustadas para não haver salto de layout).
+Carregadas com `next/font` (servidas pelo próprio domínio, `font-display: swap`, fallback com métricas ajustadas para não haver salto de layout). **Só os pesos realmente usados:** cada arquivo de fonte pré-carregado atrasa o LCP no celular. `font-medium` (500) cai para 400 por ausência do peso — use `font-semibold` quando quiser ênfase.
 
 **Escala modular 1,333 (quarta justa), base 16px.** Os títulos são fluidos entre 360px e 1440px.
 
@@ -87,20 +87,25 @@ Regras: texto corrido nunca abaixo de 16px; linhas com no máximo ~70 caracteres
 - **Raio base 8px** (`--radius`). Cards `rounded-xl` (12px), botões `rounded-lg` (8px), selos em pílula. É o meio-termo entre os títulos retos da *Pista* e a suavidade da *Campo Aberto*.
 - **Sombras suaves e quentes:** `shadow-card` em repouso, `shadow-card-hover` no hover do card. Nada de sombras pretas duras.
 - **Ícones:** Lucide, traço uniforme, sempre `aria-hidden` quando há texto ao lado; dentro de botões use `data-icon="inline-start|inline-end"`, sem classes de tamanho.
-- **Movimento:** curto e com propósito. Hover em 150–300ms, entrada de seção com `animate-rise` (500ms, `ease-out-quart`, deslocamento de 12px). Nunca animar largura/altura. Com `prefers-reduced-motion`, animações e rolagem suave são desligadas globalmente.
+- **Movimento:** curto e com propósito. Hover em 150–300ms. Blocos entram ao rolar com a classe `reveal` (CSS scroll-driven animations, zero JS, só onde há suporte). `animate-rise` (500ms, `ease-out-quart`) fica só para elementos secundários do hero. Nunca animar largura/altura. Com `prefers-reduced-motion`, animações e rolagem suave são desligadas globalmente.
+- **Nunca anime a opacidade do texto principal acima da dobra** (título e parágrafo do hero): ele vira o LCP e a animação atrasa a métrica e esconde conteúdo em conexões lentas.
 
 ## 5. Componentes
 
 | Componente | Arquivo | Notas |
 |---|---|---|
-| `Button` | `components/ui/button.tsx` (shadcn) | Variantes `default`, `secondary`, `outline`, `ghost`, `link`; tamanhos `sm`, `default` (44px), `lg`. Para **links**, use `<a className={buttonVariants(...)}>`: mesmo visual, zero JS. |
+| `Button` / `buttonVariants` | `components/ui/button.tsx` (shadcn) e `components/ui/button-variants.ts` | Variantes `default`, `secondary`, `outline`, `ghost`, `link`; tamanhos `sm`, `default` (44px), `lg`. Para **links e botões simples**, use `<a>`/`<button>` com `buttonVariants(...)` (importado de `button-variants.ts`, que não carrega o Base UI). `buttonVariants` já passa por `cn()`, então classes extras sobrescrevem as da variante. |
 | `Card` | `components/ui/card.tsx` (shadcn) | Use a composição completa: `CardHeader`/`CardTitle`/`CardDescription`/`CardContent`/`CardFooter`. |
 | `Badge` | `components/ui/badge.tsx` (shadcn) | Variantes extras: `highlight` (selo de marca) e `tech`. |
 | `TechTag` | `components/tech-tag.tsx` | Atalho para `Badge variant="tech"`. |
 | `Section` | `components/section.tsx` | `<section>` com âncora, `aria-labelledby`, eyebrow, título h2 e descrição. |
 | `ProjectCard` | `components/project-card.tsx` | Problema → solução → minha parte → resultado (opcional) → stack → links. |
-| `Navbar` / `MobileNav` | `components/navbar.tsx`, `mobile-nav.tsx` | Âncoras da página única; menu mobile com `Sheet` (shadcn). |
+| `Navbar` / `MobileNav` | `components/navbar.tsx`, `mobile-nav.tsx` | Âncoras da página única; menu mobile com a **Popover API nativa** (`popover`/`popovertarget`): foco, Esc e clique fora vêm do navegador. |
 | `ThemeToggle` | `components/theme-toggle.tsx` | Alterna `.dark` no `<html>` e salva em `localStorage`. O tema inicial é aplicado por script inline antes da pintura (sem flash). |
+
+### Exceção registrada: Sheet do shadcn → Popover nativo
+
+A regra do shadcn é usar o componente pronto (`Sheet`) em vez de marcação própria. No menu mobile isso carregava o Base UI (diálogo) em toda visita só para abrir um menu, e o Lighthouse mobile caía para ~90. Seguimos a regra de bundle da skill `vercel-react-best-practices` e usamos a Popover API do HTML, que entrega o mesmo comportamento acessível sem biblioteca. Se o site ganhar diálogos de verdade (formulários, confirmações), volte ao `Sheet`/`Dialog` do shadcn.
 
 ## 6. Faça / Não faça
 

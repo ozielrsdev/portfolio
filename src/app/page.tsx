@@ -1,16 +1,25 @@
+import { Footer } from '@/components/footer'
 import { Navbar } from '@/components/navbar'
+import { About } from '@/components/sections/about'
+import { Contact } from '@/components/sections/contact'
+import { Hero } from '@/components/sections/hero'
+import { Projects } from '@/components/sections/projects'
+import { Stack } from '@/components/sections/stack'
+import { Timeline } from '@/components/sections/timeline'
 
-// Página inicial provisória: o conteúdo real entra nas Fases 3 e 4.
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main id="inicio" className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
-        <h1 className="text-display">Em reconstrução</h1>
-        <p className="mt-4 text-lead text-muted-foreground">
-          Veja o <a href="/design-system" className="text-primary underline underline-offset-4">design system</a>.
-        </p>
+      <main id="conteudo">
+        <Hero />
+        <Projects />
+        <About />
+        <Stack />
+        <Timeline />
+        <Contact />
       </main>
+      <Footer />
     </>
   )
 }

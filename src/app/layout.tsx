@@ -4,20 +4,22 @@ import './globals.css'
 
 const barlow = Barlow({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '600'],
   variable: '--font-barlow',
 })
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
-  weight: ['600', '700'],
+  weight: ['700'],
   variable: '--font-barlow-condensed',
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400'],
   variable: '--font-jetbrains-mono',
+  // Só aparece em detalhes (eyebrows, tags); fica fora do preload para não competir com as fontes do hero.
+  preload: false,
 })
 
 export const ensureStatic = 'navigation'
@@ -35,7 +37,15 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      <body>
+        <a
+          href="#conteudo"
+          className="sr-only z-50 rounded-lg bg-primary px-4 py-3 font-semibold text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        >
+          Pular para o conteúdo
+        </a>
+        {children}
+      </body>
     </html>
   )
 }
