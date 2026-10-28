@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# Portfólio — Oziel Sousa
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site pessoal de [Oziel Sousa](https://ozieldev.vercel.app), desenvolvedor full-stack (React, Node.js, TypeScript).
 
-Currently, two official plugins are available:
+Página única gerada de forma 100% estática: o HTML já chega com todo o conteúdo para buscadores e prévias de link.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## Expanding the ESLint configuration
+- **Next.js 16** (App Router, Cache Components, `ensureStatic = 'navigation'` no layout raiz)
+- **React 19** + **TypeScript**
+- **Tailwind CSS v4** com design tokens em CSS variables
+- **shadcn/ui** (Base UI) para Button, Card e Badge
+- `next/font` (Barlow, Barlow Condensed, JetBrains Mono) e `next/image` (AVIF/WebP)
+- `next/og` para a imagem de prévia (Open Graph e Twitter Card)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Rodando localmente
 
-- Configure the top-level `parserOptions` property like this:
+Precisa de Node.js 20.9 ou superior.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # build de produção (falha se algo dinâmico entrar na página)
+npm run lint
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Onde mexer
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+| Quero mudar... | Arquivo |
+|---|---|
+| Textos, projetos, stack, trajetória, links | `src/content/site.ts` |
+| Título e descrição para buscadores | `SEO` em `src/content/site.ts` |
+| Cores, fontes, espaçamentos | `src/app/globals.css` (veja `DESIGN_SYSTEM.md`) |
+| Currículo em PDF | `public/curriculo-oziel-sousa.pdf` |
+| Imagem de prévia de link | `src/lib/og-image.tsx` |
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Ao atualizar o conteúdo, ajuste `SEO.lastUpdated` para o sitemap refletir a data.
+
+## Documentação
+
+- [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md): tokens, tipografia, componentes e regras de uso
+- [`docs/lighthouse/`](docs/lighthouse/): relatórios Lighthouse antes e depois da reformulação
+- `/design-system`: vitrine viva dos componentes (fora do índice de buscadores)
+
+## Licenças
+
+Fontes Barlow em `src/assets/fonts/` sob a [SIL Open Font License](src/assets/fonts/OFL.txt).

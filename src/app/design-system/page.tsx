@@ -11,7 +11,9 @@ import type { Project } from '@/lib/types'
 
 export const metadata: Metadata = {
   title: 'Design system',
-  robots: { index: false },
+  description: 'Tokens, tipografia e componentes do portfólio de Oziel Sousa.',
+  alternates: { canonical: '/design-system' },
+  robots: { index: false, follow: true },
 }
 
 const COLOR_TOKENS = [

@@ -1,4 +1,5 @@
 import { Footer } from '@/components/footer'
+import { JsonLd } from '@/components/json-ld'
 import { Navbar } from '@/components/navbar'
 import { About } from '@/components/sections/about'
 import { Contact } from '@/components/sections/contact'
@@ -10,6 +11,7 @@ import { Timeline } from '@/components/sections/timeline'
 export default function Home() {
   return (
     <>
+      <JsonLd />
       <Navbar />
       <main id="conteudo">
         <Hero />
