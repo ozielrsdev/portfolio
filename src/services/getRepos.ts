@@ -9,13 +9,7 @@ interface ReposProps {
 
 export const getRepos = async (): Promise<ReposProps[]> => {
   try {
-    const response = await fetch( env.VITE_GITHUB_URL,
-      {
-        headers: {
-          Authorization: env.VITE_GITHUB_TOKEN,
-        },
-      },
-    )
+    const response = await fetch(env.VITE_GITHUB_URL)
     const data: ReposProps[] = await response.json()
     return data
   } catch (error) {
