@@ -19,9 +19,8 @@ export function About() {
 
         <div className="reveal flex max-w-2xl flex-col gap-5 text-lg">
           <p>
-            Sou de Aparecida de Goiânia (GO). Fora do código, gosto de fazenda, trator, caminhonete, música e jogos, e de
-            qualquer máquina bem construída. Levo isso para o software: tem que funcionar, ser fácil de usar e aguentar o
-            tranco.
+            Sou de Aparecida de Goiânia (GO) e sempre gostei de coisas bem construídas, feitas para durar. É assim que penso
+            software: tem que funcionar, ser fácil de usar e aguentar o tranco.
           </p>
           <p>
             Meu caminho não foi em linha reta. Trabalhei com design gráfico e redes sociais num supermercado, e lá percebi

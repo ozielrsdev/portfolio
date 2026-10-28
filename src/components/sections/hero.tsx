@@ -24,7 +24,8 @@ export function Hero() {
           </h1>
 
           <p className="max-w-xl text-xl leading-snug font-semibold text-balance sm:text-2xl">
-            Transformo processos manuais e bagunçados em <span className="text-primary">software simples de usar</span>.
+            Crio software que tira o trabalho repetitivo do caminho e{' '}
+            <span className="text-primary">deixa as pessoas focarem no que importa</span>.
           </p>
 
           <p className="max-w-xl text-lg text-muted-foreground">
