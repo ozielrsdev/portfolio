@@ -35,10 +35,6 @@ export const Home = () => {
     <>
       <section className="overflow-x-hidden">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
           className="w-full h-screen flex flex-col justify-center items-center
           md:grid md:grid-cols-2"
         >
@@ -48,7 +44,7 @@ export const Home = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               className=" flex justify-center shadow-lg
-               shadow-emerald-400 p-3 items-center rounded-full
+               shadow-fuchsia-400 p-3 items-center rounded-full
                bg-[radial-gradient(rgba(0,0,0,0.15)_60%,_transparent_0),
                _radial-gradient(#131926,_68%,_transparent_0),_linear-gradient
                (to_top_right,_#67e8f9_0%,_#6ee7b7_1%)]"
@@ -93,11 +89,8 @@ export const Home = () => {
             justify-center"
           >
             <svg className='absolute top-0' viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <path fill='#0f766e' d="M49.5,-62.1C61.4,-59.5,66.4,-41.4,69.5,-24.3C72.6,-7.3,73.8,8.5,67.1,19.5C60.3,30.4,45.5,36.4,33,45.8C20.5,55.3,10.3,68.3,0.4,67.7C-9.4,67.1,-18.7,52.9,-30.5,43.1C-42.2,33.4,-56.2,28.1,-62.6,18.1C-69,8,-67.8,-6.8,-60.5,-16.7C-53.2,-26.6,-39.9,-31.6,-28.8,-34.4C-17.7,-37.2,-8.9,-37.8,5,-44.7C18.8,-51.6,37.7,-64.6,49.5,-62.1Z" transform="translate(70 30)" />
+              <path fill='oklch(74% 0.238 322.16)' d="M49.5,-62.1C61.4,-59.5,66.4,-41.4,69.5,-24.3C72.6,-7.3,73.8,8.5,67.1,19.5C60.3,30.4,45.5,36.4,33,45.8C20.5,55.3,10.3,68.3,0.4,67.7C-9.4,67.1,-18.7,52.9,-30.5,43.1C-42.2,33.4,-56.2,28.1,-62.6,18.1C-69,8,-67.8,-6.8,-60.5,-16.7C-53.2,-26.6,-39.9,-31.6,-28.8,-34.4C-17.7,-37.2,-8.9,-37.8,5,-44.7C18.8,-51.6,37.7,-64.6,49.5,-62.1Z" transform="translate(70 30)" />
             </svg>
-
-
-
           </div>
         </motion.div>
 

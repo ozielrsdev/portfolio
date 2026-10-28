@@ -12,9 +12,9 @@ const buttonVariants = tv({
   variants: {
     variant: {
       primary:
-        'border border-emerald-300 text-emerald-300 hover:bg-emerald-300 hover:text-gray-800',
+        'border border-fuchsia-400 text-fuchsia-400 hover:bg-fuchsia-400 hover:text-white',
       secondary:
-        'bg-emerald-300 text-gray-800 hover:border border-emerald-300 hover:text-emerald-300 hover:bg-gray-800 ring-emerald-500',
+        'bg-fuchsia-400 text-white hover:border border-fuchsia-400 hover:text-fuchsia-400 hover:bg-transparent',
     },
   },
   defaultVariants: {
