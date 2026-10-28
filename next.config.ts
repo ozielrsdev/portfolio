@@ -7,6 +7,13 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  // Rotas da versão antiga (SPA com páginas separadas) apontam para as seções da página única.
+  async redirects() {
+    return [
+      { source: '/projects', destination: '/#projetos', permanent: true },
+      { source: '/contact', destination: '/#contato', permanent: true },
+    ]
+  },
   turbopack: {
     rules: {
       "*.css": {
