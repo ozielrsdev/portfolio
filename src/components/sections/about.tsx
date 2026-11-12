@@ -28,7 +28,7 @@ export function About() {
             pela linha de montagem de painéis elétricos, onde aprendi que padrão, organização e segurança não são detalhe.
           </p>
           <p>
-            Hoje curso Engenharia de Software na UNINTER, depois de 720 horas de formação full-stack na Programadores do
+            Hoje curso Análise e Desenvolvimento de Sistemas na UNINTER, depois de 720 horas de formação full-stack na Programadores do
             Amanhã. Sou <strong>curioso, calmo e direto</strong>: pergunto até entender o problema e falo com clareza
             quando algo não vai dar certo.
           </p>

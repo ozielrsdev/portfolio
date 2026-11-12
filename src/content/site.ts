@@ -7,7 +7,7 @@ export const SEO = {
   description:
     'Desenvolvedor full-stack em Goiânia. Crio software que tira o trabalho repetitivo do caminho, com React, Node.js e TypeScript. Veja projetos e entre em contato.',
   /** Data da última atualização de conteúdo, usada no sitemap. Atualize ao mudar textos ou projetos. */
-  lastUpdated: '2026-10-28',
+  lastUpdated: '2026-11-12',
 } as const
 
 export const PROFILE = {
@@ -108,10 +108,10 @@ export const STACK = [
 
 export const TIMELINE = [
   {
-    period: '03/2026 – hoje',
-    title: 'Bacharelado em Engenharia de Software',
+    period: '10/2026 – hoje',
+    title: 'Tecnólogo em Análise e Desenvolvimento de Sistemas',
     place: 'UNINTER',
-    detail: 'Previsão de conclusão: 08/2030.',
+    detail: 'Previsão de conclusão: 04/2029.',
     kind: 'Formação',
   },
   {
