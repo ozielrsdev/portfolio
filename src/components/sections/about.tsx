@@ -10,7 +10,7 @@ export function About() {
           <div className="absolute -right-3 -bottom-3 size-full rounded-xl bg-highlight" aria-hidden />
           <Image
             src={photo}
-            alt="Foto de Oziel Sousa, de camisa clara, olhando para a câmera"
+            alt="Foto de Oziel Sousa, de camisa escura, olhando para o lado"
             sizes="(min-width: 768px) 18rem, 80vw"
             placeholder="blur"
             className="relative aspect-square rounded-xl object-cover shadow-card"
