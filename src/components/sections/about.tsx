@@ -19,18 +19,16 @@ export function About() {
 
         <div className="reveal flex max-w-2xl flex-col gap-5 text-lg">
           <p>
-            Sou de Aparecida de Goiânia (GO) e sempre gostei de coisas bem construídas, feitas para durar. É assim que penso
-            software: tem que funcionar, ser fácil de usar e aguentar o tranco.
+            Prazer, me chamo Oziel. Moro em Aparecida de Goiânia (GO) e trabalho como desenvolvedor full-stack.
           </p>
           <p>
-            Meu caminho não foi em linha reta. Trabalhei com design gráfico e redes sociais num supermercado, e lá percebi
-            uma tarefa manual que se repetia e tomava tempo da equipe. Resolvi com uma automação em Python. Também passei
-            pela linha de montagem de painéis elétricos, onde aprendi que padrão, organização e segurança não são detalhe.
+            Uso React, Node.js e TypeScript e estudo Análise e Desenvolvimento de Sistemas na UNINTER. Antes de
+            entrar de vez na programação, trabalhei com design gráfico, e isso me deixou atento à parte visual e a quem vai
+            usar o sistema.
           </p>
           <p>
-            Hoje curso Análise e Desenvolvimento de Sistemas na UNINTER, depois de 720 horas de formação full-stack na Programadores do
-            Amanhã. Sou <strong>curioso, calmo e direto</strong>: pergunto até entender o problema e falo com clareza
-            quando algo não vai dar certo.
+            Gosto de projetos que resolvem problemas de verdade, mesmo que pequenos, e de entender bem o problema antes de
+            começar a escrever código.
           </p>
         </div>
       </div>
