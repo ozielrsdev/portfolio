@@ -31,10 +31,19 @@ npm run lint
 | Textos, projetos, stack, trajetória, links | `src/content/site.ts` |
 | Título e descrição para buscadores | `SEO` em `src/content/site.ts` |
 | Cores, fontes, espaçamentos | `src/app/globals.css` (veja `DESIGN_SYSTEM.md`) |
-| Currículo em PDF | `public/curriculo-oziel-sousa.pdf` |
+| Currículo em PDF | `docs/curriculo.html` (fonte), gerando `public/curriculo-oziel-sousa.pdf` (veja abaixo) |
 | Imagem de prévia de link | `src/lib/og-image.tsx` |
 
 Ao atualizar o conteúdo, ajuste `SEO.lastUpdated` para o sitemap refletir a data.
+
+Para gerar o PDF do currículo depois de editar `docs/curriculo.html` (precisa de internet para carregar as fontes):
+
+```bash
+google-chrome --headless=new --no-pdf-header-footer --virtual-time-budget=8000 \
+  --print-to-pdf=public/curriculo-oziel-sousa.pdf "file://$PWD/docs/curriculo.html"
+```
+
+O currículo deve caber em uma página A4; confira o PDF antes de publicar.
 
 ## Documentação
 
