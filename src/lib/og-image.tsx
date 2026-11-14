@@ -85,9 +85,9 @@ export function renderOgImage() {
                   {tech}
                 </div>
               ))}
-              <div style={{ display: 'flex', alignItems: 'center', fontSize: 26, color: COLORS.primary, marginLeft: 12 }}>
-                ozieldev.vercel.app
-              </div>
+            </div>
+            <div style={{ display: 'flex', fontSize: 28, fontWeight: 600, color: COLORS.primary, marginTop: 28 }}>
+              Veja meus projetos → ozieldev.vercel.app
             </div>
           </div>
           <div style={{ display: 'flex', position: 'relative', width: 300, height: 300 }}>

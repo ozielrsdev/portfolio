@@ -3,11 +3,13 @@ import type { Project } from '@/lib/types'
 export const SITE_URL = 'https://ozieldev.vercel.app'
 
 export const SEO = {
-  title: 'Oziel Sousa | Desenvolvedor Full-Stack (React, Node.js, TypeScript)',
+  title: 'Oziel Sousa | Desenvolvedor Full-Stack React e Node.js',
   description:
     'Desenvolvedor full-stack em Goiânia. Crio software que tira o trabalho repetitivo do caminho, com React, Node.js e TypeScript. Veja projetos e entre em contato.',
+  /** Versão curta para prévias de link (LinkedIn, WhatsApp, X), que cortam por volta de 125 caracteres. */
+  socialDescription: 'Desenvolvedor full-stack em Goiânia, com React, Node.js e TypeScript. Veja meus projetos e entre em contato.',
   /** Data da última atualização de conteúdo, usada no sitemap. Atualize ao mudar textos ou projetos. */
-  lastUpdated: '2026-11-12',
+  lastUpdated: '2026-11-14',
 } as const
 
 export const PROFILE = {
