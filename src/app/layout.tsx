@@ -50,6 +50,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true, 'max-image-preview': 'large' },
   formatDetection: { telephone: false },
+  verification: { google: 'oTuYSGg1IVa9iYUYTMQZEiJOvOdteayUAvqWaDh--EQ' },
 }
 
 export const viewport: Viewport = {
