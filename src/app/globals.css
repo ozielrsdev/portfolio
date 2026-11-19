@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design tokens — direção "Campo Aberto" (paleta) + tipografia "Pista".
+ * Design tokens do portfólio.
  * Valores e regras de uso documentados em DESIGN_SYSTEM.md.
  * Componentes consomem apenas os utilitários semânticos gerados abaixo (bg-primary, text-muted-foreground...).
  */
@@ -72,6 +72,7 @@
   --shadow-card-hover: 0 2px 4px rgb(28 25 23 / 0.08), 0 20px 40px -18px rgb(28 25 23 / 0.32);
 
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --animate-rise: rise 0.5s var(--ease-out-quart) both;
 
   @keyframes rise {
@@ -135,22 +136,215 @@
 }
 
 /*
- * Entrada de blocos ao rolar: CSS puro (scroll-driven animations), sem JS.
- * Só ativa onde há suporte e sem prefers-reduced-motion; fora disso o conteúdo aparece direto.
+ * Movimento — tese "montagem": cada peça encaixa no lugar com um movimento preciso, sem quique.
+ * Momento principal no hero (traço sob "sistemas web" + linhas do Resumo encaixando); o resto acompanha
+ * a leitura (linha da trajetória, placa da foto, seção atual no menu) ou responde a ações.
+ * O estado padrão é sempre o final e visível: se a animação não roda, nada fica escondido.
  */
-@keyframes reveal {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+
+/* Linhas do Resumo encaixam uma a uma, logo depois do card. --i é a posição da linha. */
+@keyframes slot-in {
+  from { opacity: 0; translate: -10px 0; }
+}
+
+/* Menu do topo: traço sob a seção que está na tela (aria-current vem do NavLinks). */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0.75rem;
+  bottom: 0.4rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--primary);
+  scale: 0 1;
+  transition: scale 300ms var(--ease-out-expo);
+}
+.nav-link[aria-current]::after {
+  scale: 1 1;
+}
+
+/* Seta de link anda na direção do destino no hover (o link fica parado; só o ícone se move). */
+.nudge {
+  transition: translate 200ms var(--ease-out-expo);
+}
+a:hover .nudge-out,
+a:focus-visible .nudge-out {
+  translate: 2px -2px;
+}
+a:hover .nudge-down,
+a:focus-visible .nudge-down {
+  translate: 0 2px;
+}
+
+/* Trajetória: trilho cinza fixo + preenchimento verde que acompanha a rolagem (--rail vem do ScrollMotion). */
+.timeline {
+  position: relative;
+}
+.timeline::before,
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -2px;
+  width: 2px;
+  border-radius: 2px;
+}
+.timeline::before {
+  background: var(--border);
+}
+/* Padrão: trilho cheio e pontos acesos (sem JS ou com movimento reduzido, fica o estado final). */
+.timeline::after {
+  background: var(--primary);
+  transform-origin: top;
+}
+
+/* Traço do hero: desenha da esquerda para a direita depois que o título já está na tela. */
+.hero-accent {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 3px;
+  padding-bottom: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+@keyframes draw-underline {
+  from { background-size: 0% 3px; }
+}
+
+/* Menu do celular: entra pelo lado do botão e sai mais rápido do que entrou. */
+.sheet,
+.sheet::backdrop {
+  transition-property: transform, opacity, background-color, display, overlay;
+  transition-duration: 180ms;
+  transition-timing-function: ease-in;
+  transition-behavior: allow-discrete;
+}
+.sheet:popover-open,
+.sheet:popover-open::backdrop {
+  transition-duration: 320ms;
+  transition-timing-function: var(--ease-out-expo);
+}
+.sheet:not(:popover-open) {
+  transform: translateX(100%);
+}
+.sheet::backdrop {
+  background-color: transparent;
+}
+.sheet:popover-open::backdrop {
+  background-color: color-mix(in oklch, var(--foreground) 30%, transparent);
+}
+@starting-style {
+  .sheet:popover-open { transform: translateX(100%); }
+  .sheet:popover-open::backdrop { background-color: transparent; }
+}
+
+/* Confirmação de "e-mail copiado". */
+@keyframes pop-in {
+  from { opacity: 0; scale: 0.5; }
+}
+.copy-ok {
+  animation: pop-in 200ms var(--ease-out-expo);
+}
+
+/* Troca de tema: o tema novo se espalha em círculo a partir do botão (animado no ThemeToggle). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Ícone do botão de tema: gira ao trocar (só depois de um clique, não no carregamento). */
+[data-theme-switched] .theme-icon {
+  transition: rotate 300ms var(--ease-out-expo), opacity 300ms var(--ease-out-expo);
+}
+@starting-style {
+  [data-theme-switched] .theme-icon { rotate: -90deg; opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+/*
+ * Animações ao rolar. O ScrollMotion (components/scroll-motion.tsx) põe .js-motion no <html> só quando há JS
+ * e o visitante não pediu movimento reduzido; cada bloco ganha .is-in ao entrar na tela.
+ * Sem .js-motion, nenhuma destas regras vale e tudo aparece no estado final.
+ */
+.js-motion .reveal {
+  transition: opacity 600ms var(--ease-out-expo), translate 600ms var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.js-motion .reveal:not(.is-in) {
+  opacity: 0;
+  translate: 0 24px;
+}
+
+/* Títulos de seção: traço curto se desenha sob o título, o mesmo gesto do "sistemas web" do hero. */
+.section-title {
+  position: relative;
+  padding-bottom: 0.6rem;
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.5rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--primary);
+  transform-origin: left;
+}
+.js-motion .section-title::after {
+  transition: scale 700ms var(--ease-out-expo) 150ms;
+}
+.js-motion .section-title:not(.is-in)::after {
+  scale: 0 1;
+}
+
+/* Peças que encaixam em sequência quando o grupo (.slots) entra: tags da Stack, botões do Contato. --i é a ordem. */
+.js-motion .slot {
+  transition: opacity 450ms var(--ease-out-expo), translate 450ms var(--ease-out-expo);
+  transition-delay: calc(120ms + min(var(--i, 0), 10) * 45ms);
+}
+.js-motion .slots:not(.is-in) .slot {
+  opacity: 0;
+  translate: -10px 0;
+}
+
+/* Trajetória: o trilho cresce com a rolagem; a ponta fica na linha de 60% da tela. */
+.js-motion .timeline::after {
+  scale: 1 var(--rail, 0);
+}
+.js-motion .timeline-dot {
+  transition: background-color 250ms var(--ease-out-expo), box-shadow 250ms var(--ease-out-expo);
+}
+.js-motion .timeline-dot:not(.is-lit) {
+  background-color: var(--background);
+  box-shadow: 0 0 0 2px var(--border);
+}
+
+/* Sobre: a placa amarela desliza de trás da foto até o lugar. */
+.js-motion .photo-plate {
+  transition: translate 800ms var(--ease-out-expo) 200ms;
+}
+.js-motion .photo-plate:not(.is-in) {
+  translate: -12px -12px;
 }
 
 @layer utilities {
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .reveal {
-        animation: reveal linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 35%;
-      }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-accent {
+      animation: draw-underline 700ms var(--ease-out-expo) 350ms both;
+    }
+    .summary-row {
+      animation: slot-in 450ms var(--ease-out-expo) both;
+      animation-delay: calc(350ms + var(--i, 0) * 70ms);
     }
   }
 }
@@ -193,16 +387,60 @@
     scroll-margin-top: 5rem;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+}
+
+/*
+ * Movimento reduzido: tira o deslocamento, mantém o que confirma uma ação (fades curtos, troca de cor).
+ * Fica fora de qualquer @layer de propósito: assim vence as regras de movimento acima e os utilitários
+ * do Tailwind (.animate-rise). O traço do hero e as animações ligadas à rolagem só existem em no-preference.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
+  .animate-rise {
+    animation-name: fade-in;
+  }
+  .sheet,
+  .sheet:not(:popover-open),
+  .sheet:popover-open {
+    transform: none;
+  }
+  .sheet:not(:popover-open) {
+    opacity: 0;
+  }
+  .copy-ok,
+  .summary-row {
+    animation: fade-in 300ms ease-out both;
+  }
+  .nudge {
+    transition: none;
+  }
+  a:hover .nudge-out,
+  a:focus-visible .nudge-out,
+  a:hover .nudge-down,
+  a:focus-visible .nudge-down {
+    translate: none;
+  }
+  [data-theme-switched] .theme-icon {
+    transition: opacity 200ms ease-out;
+  }
+  .nav-link::after {
+    scale: 1 1;
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+  }
+  .nav-link[aria-current]::after {
+    opacity: 1;
+  }
+  @starting-style {
+    .sheet:popover-open { transform: none; opacity: 0; }
+    [data-theme-switched] .theme-icon { rotate: 0deg; }
+  }
+}
+
+/* Troca de tema sem View Transitions: desliga as transições por um instante para não sobrar botão no tema antigo. */
+.theme-swapping,
+.theme-swapping * {
+  transition: none !important;
 }

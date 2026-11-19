@@ -1,6 +1,6 @@
 import { MobileNav } from '@/components/mobile-nav'
+import { NavLinks } from '@/components/nav-links'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { NAV_ITEMS } from '@/lib/nav'
 
 export function Navbar() {
   return (
@@ -12,18 +12,7 @@ export function Navbar() {
         </a>
 
         <nav aria-label="Principal" className="hidden md:block">
-          <ul className="flex items-center gap-1">
-            {NAV_ITEMS.map(({ href, label }) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="flex min-h-11 items-center rounded-lg px-3 font-semibold text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <NavLinks />
         </nav>
 
         <div className="flex items-center gap-1">

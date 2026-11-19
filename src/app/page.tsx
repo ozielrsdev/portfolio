@@ -1,6 +1,7 @@
 import { Footer } from '@/components/footer'
 import { JsonLd } from '@/components/json-ld'
 import { Navbar } from '@/components/navbar'
+import { ScrollMotion } from '@/components/scroll-motion'
 import { About } from '@/components/sections/about'
 import { Contact } from '@/components/sections/contact'
 import { Hero } from '@/components/sections/hero'
@@ -22,6 +23,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <ScrollMotion />
     </>
   )
 }

@@ -48,7 +48,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <CardFooter className="flex-wrap gap-3">
           {links.demo ? (
             <a href={links.demo} target="_blank" rel="noopener noreferrer" className={buttonVariants({ size: 'sm' })}>
-              <ExternalLinkIcon data-icon="inline-start" aria-hidden />
+              <ExternalLinkIcon data-icon="inline-start" className="nudge nudge-out" aria-hidden />
               Ver online<span className="sr-only"> ({name}, abre em nova aba)</span>
             </a>
           ) : null}

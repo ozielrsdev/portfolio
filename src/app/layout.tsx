@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-jetbrains-mono',
-  // Só aparece em detalhes (eyebrows, tags); fica fora do preload para não competir com as fontes do hero.
+  // Só aparece em detalhes (linha de abertura do hero, tags); fica fora do preload para não competir com as fontes do hero.
   preload: false,
 })
 

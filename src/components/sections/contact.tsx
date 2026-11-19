@@ -16,22 +16,23 @@ export function Contact() {
   return (
     <Section
       id="contato"
-      eyebrow="próximo passo"
-      title="Vamos conversar?"
-      description="Estou disponível para vagas (inclusive estágio) e projetos freelance. Se você tem uma oportunidade ou um processo que precisa sair do papel, me chama."
+      title="Contato"
+      description="Procuro vaga (inclusive estágio) e aceito projetos freelance. Pode chamar por e-mail, LinkedIn ou WhatsApp."
     >
-      <div className="reveal flex flex-col gap-6">
+      <div className="slots flex flex-col gap-6">
         <div className="flex flex-wrap items-center gap-3">
-          <a href={`mailto:${PROFILE.email}`} className={buttonVariants({ size: 'lg' })}>
+          <a href={`mailto:${PROFILE.email}`} className={cn(buttonVariants({ size: 'lg' }), 'slot')} style={{ '--i': 0 } as React.CSSProperties}>
             <MailIcon data-icon="inline-start" aria-hidden />
             {PROFILE.email}
           </a>
-          <CopyEmailButton email={PROFILE.email} />
+          <div className="slot" style={{ '--i': 1 } as React.CSSProperties}>
+            <CopyEmailButton email={PROFILE.email} />
+          </div>
         </div>
 
         <ul className="flex flex-wrap gap-3" aria-label="Redes e mensagens">
-          {SOCIALS.map(({ label, href, Icon }) => (
-            <li key={label}>
+          {SOCIALS.map(({ label, href, Icon }, i) => (
+            <li key={label} className="slot" style={{ '--i': i + 2 } as React.CSSProperties}>
               <a
                 href={href}
                 target="_blank"

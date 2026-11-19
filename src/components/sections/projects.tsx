@@ -9,13 +9,13 @@ export function Projects() {
   return (
     <Section
       id="projetos"
-      eyebrow="o que eu já construí"
-      title="Projetos em destaque"
-      description="Problemas reais, o que eu fiz e com o quê."
+      title="Projetos"
+      description="Um projeto solo e três em equipe. Em cada um, deixo claro qual foi a minha parte."
     >
       <ul className="grid gap-6 md:grid-cols-2">
-        {PROJECTS.map((project) => (
-          <li key={project.slug} className="reveal">
+        {PROJECTS.map((project, i) => (
+          // Na grade de 2 colunas, o card da direita chega um instante depois do da esquerda.
+          <li key={project.slug} className="reveal" style={{ '--i': i % 2 } as React.CSSProperties}>
             <ProjectCard project={project} />
           </li>
         ))}
@@ -31,7 +31,7 @@ export function Projects() {
           Mais projetos no meu GitHub (Eco-Points, FeelAI e{' '}
           <span className="whitespace-nowrap">
             outros)
-            <ArrowUpRightIcon className="ml-1 inline size-4 align-[-0.125em]" aria-hidden />
+            <ArrowUpRightIcon className="nudge nudge-out ml-1 inline size-4 align-[-0.125em]" aria-hidden />
           </span>
           <span className="sr-only"> (abre em nova aba)</span>
         </span>

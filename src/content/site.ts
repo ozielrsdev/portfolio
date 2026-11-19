@@ -5,11 +5,11 @@ export const SITE_URL = 'https://ozieldev.vercel.app'
 export const SEO = {
   title: 'Oziel Sousa | Desenvolvedor Full-Stack React e Node.js',
   description:
-    'Desenvolvedor full-stack em Goiânia. Crio software que tira o trabalho repetitivo do caminho, com React, Node.js e TypeScript. Veja projetos e entre em contato.',
+    'Desenvolvedor full-stack em Aparecida de Goiânia (GO). Sistemas web com React, Node.js e TypeScript e automações em Python. Veja projetos e entre em contato.',
   /** Versão curta para prévias de link (LinkedIn, WhatsApp, X), que cortam por volta de 125 caracteres. */
   socialDescription: 'Desenvolvedor full-stack em Goiânia, com React, Node.js e TypeScript. Veja meus projetos e entre em contato.',
   /** Data da última atualização de conteúdo, usada no sitemap. Atualize ao mudar textos ou projetos. */
-  lastUpdated: '2026-11-14',
+  lastUpdated: '2026-11-19',
 } as const
 
 export const PROFILE = {
@@ -128,7 +128,7 @@ export const TIMELINE = [
     title: 'Desenvolvedor de Automação (freelance)',
     place: 'Supermercado Cristo Rei',
     detail:
-      'Automação em Python + Selenium que eliminou uma tarefa manual recorrente, empacotada para rodar em Windows e Linux.',
+      'Automação em Python + Selenium que troca a senha do Wi-Fi dos clientes, tarefa que antes era feita à mão. Empacotada para rodar em Windows e Linux.',
     kind: 'Experiência',
   },
   {

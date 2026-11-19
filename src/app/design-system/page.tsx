@@ -59,7 +59,7 @@ export default function DesignSystemPage() {
     <>
       <Navbar />
       <main>
-        <Section id="cores" eyebrow="tokens / cores" title="Cores" description="Paleta Campo Aberto. Alterne o tema no topo para ver o modo escuro.">
+        <Section id="cores" eyebrow="tokens / cores" title="Cores" description="Paleta do portfólio. Alterne o tema no topo para ver o modo escuro.">
           <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {COLOR_TOKENS.map(({ name, className, use }) => (
               <li key={name} className="flex flex-col overflow-hidden rounded-lg border bg-card">

@@ -42,13 +42,6 @@ export function renderOgImage() {
           fontFamily: 'Barlow',
         }}
       >
-        <div
-          style={{
-            height: 18,
-            width: '100%',
-            backgroundImage: `repeating-linear-gradient(-45deg, ${COLORS.highlight} 0 22px, ${COLORS.background} 22px 44px)`,
-          }}
-        />
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', padding: '0 80px', gap: 64 }}>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 28, color: COLORS.muted }}>
@@ -67,7 +60,7 @@ export function renderOgImage() {
               Oziel Sousa
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: 38, fontWeight: 600, lineHeight: 1.25, marginTop: 24 }}>
-              <span>Crio software que tira o trabalho repetitivo do caminho.</span>
+              <span>Desenvolvo sistemas web. Também faço manutenção de computadores.</span>
             </div>
             <div style={{ display: 'flex', gap: 12, marginTop: 36 }}>
               {['React', 'Node.js', 'TypeScript'].map((tech) => (

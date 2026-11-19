@@ -2,11 +2,13 @@ import { ArrowDownIcon, DownloadIcon } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button-variants'
 import { PROFILE } from '@/content/site'
 
-const SPECS = [
-  { label: 'Função', value: 'Desenvolvedor full-stack' },
-  { label: 'Motor', value: 'React + Node.js' },
-  { label: 'Combustível', value: 'TypeScript' },
-  { label: 'Base', value: PROFILE.location },
+// O que um recrutador procura primeiro, sem precisar rolar a página.
+const SUMMARY = [
+  { label: 'Área', value: 'Desenvolvimento full-stack' },
+  { label: 'Stack', value: 'React, Node.js, TypeScript' },
+  { label: 'Formação', value: 'ADS na UNINTER (cursando)' },
+  { label: 'Busco', value: 'Vagas, estágio e freelance' },
+  { label: 'Local', value: PROFILE.location },
 ]
 
 export function Hero() {
@@ -24,18 +26,18 @@ export function Hero() {
           </h1>
 
           <p className="max-w-xl text-xl leading-snug font-semibold text-balance sm:text-2xl">
-            Crio software que tira o trabalho repetitivo do caminho e{' '}
-            <span className="text-primary">deixa as pessoas focarem no que importa</span>.
+            Desenvolvo <span className="hero-accent text-primary">sistemas web</span> com React, Node.js e TypeScript.
           </p>
 
           <p className="max-w-xl text-lg text-muted-foreground">
-            Sou desenvolvedor full-stack com React, Node.js e TypeScript. Do banco de dados à interface, gosto de entender
-            o problema antes de escrever a primeira linha de código.
+            Já fiz um quadro de serviços para assistência técnica e uma automação que troca a senha do Wi-Fi dos clientes
+            de um supermercado. Também presto serviços de formatação, limpeza e manutenção de computadores, coisa que faço
+            desde pequeno.
           </p>
 
           <p className="flex items-center gap-2 text-sm font-semibold">
             <span className="relative flex size-2.5" aria-hidden>
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60 motion-reduce:hidden" />
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60 [animation-iteration-count:3] motion-reduce:hidden" />
               <span className="relative inline-flex size-2.5 rounded-full bg-success" />
             </span>
             Disponível para vagas (inclusive estágio) e projetos freelance
@@ -44,7 +46,7 @@ export function Hero() {
           <div className="flex flex-wrap gap-3">
             <a href="#projetos" className={buttonVariants({ size: 'lg' })}>
               Ver projetos
-              <ArrowDownIcon data-icon="inline-end" aria-hidden />
+              <ArrowDownIcon data-icon="inline-end" className="nudge nudge-down" aria-hidden />
             </a>
             <a href="#contato" className={buttonVariants({ size: 'lg', variant: 'secondary' })}>
               Fale comigo
@@ -57,18 +59,18 @@ export function Hero() {
         </div>
 
         <aside
-          aria-label="Ficha técnica"
+          aria-label="Resumo profissional"
           className="animate-rise rounded-xl border bg-card shadow-card [animation-delay:150ms]"
         >
-          <div
-            className="h-2 rounded-t-xl bg-[repeating-linear-gradient(-45deg,var(--highlight)_0_12px,var(--foreground)_12px_24px)]"
-            aria-hidden
-          />
           <div className="flex flex-col gap-4 p-6">
-            <p className="font-heading text-xl font-bold tracking-wide uppercase">Ficha técnica</p>
+            <p className="font-heading text-xl font-bold tracking-wide uppercase">Resumo</p>
             <dl className="flex flex-col divide-y font-mono text-sm">
-              {SPECS.map(({ label, value }) => (
-                <div key={label} className="flex items-baseline justify-between gap-4 py-2.5">
+              {SUMMARY.map(({ label, value }, i) => (
+                <div
+                  key={label}
+                  className="summary-row flex items-baseline justify-between gap-4 py-2.5"
+                  style={{ '--i': i } as React.CSSProperties}
+                >
                   <dt className="text-muted-foreground uppercase">{label}</dt>
                   <dd className="text-right">{value}</dd>
                 </div>

@@ -4,10 +4,10 @@ import photo from '@/assets/oziel-sousa.jpg'
 
 export function About() {
   return (
-    <Section id="sobre" eyebrow="quem está por trás" title="Sobre mim" className="border-y bg-muted/40">
+    <Section id="sobre" title="Sobre mim" className="border-y bg-muted/40">
       <div className="grid items-start gap-10 md:grid-cols-[minmax(0,18rem)_1fr] lg:gap-16">
-        <div className="reveal relative mx-auto w-full max-w-72 md:mx-0">
-          <div className="absolute -right-3 -bottom-3 size-full rounded-xl bg-highlight" aria-hidden />
+        <div className="relative mx-auto w-full max-w-72 md:mx-0">
+          <div className="photo-plate absolute -right-3 -bottom-3 size-full rounded-xl bg-highlight" aria-hidden />
           <Image
             src={photo}
             alt="Foto de Oziel Sousa, de camisa escura, olhando para o lado"
@@ -17,18 +17,20 @@ export function About() {
           />
         </div>
 
-        <div className="reveal flex max-w-2xl flex-col gap-5 text-lg">
+        <div className="flex max-w-2xl flex-col gap-5 text-lg">
           <p>
-            Prazer, me chamo Oziel. Moro em Aparecida de Goiânia (GO) e trabalho como desenvolvedor full-stack.
+            Sou o Oziel, de Aparecida de Goiânia (GO). O interesse por computador virou estudo na formação de
+            desenvolvedor full-stack da Programadores do Amanhã: 720 horas, de 2023 a 2024.
           </p>
           <p>
-            Uso React, Node.js e TypeScript e estudo Análise e Desenvolvimento de Sistemas na UNINTER. Antes de
-            entrar de vez na programação, trabalhei com design gráfico, e isso me deixou atento à parte visual e a quem vai
-            usar o sistema.
+            Por dois anos fiz as artes das redes sociais do Supermercado Cristo Rei, e do design ficou o cuidado com a
+            parte visual. Lá também fiz, como freelance, uma automação em Python com Selenium que troca a senha do Wi-Fi
+            dos clientes, uma tarefa que antes era feita à mão.
           </p>
           <p>
-            Gosto de projetos que resolvem problemas de verdade, mesmo que pequenos, e de entender bem o problema antes de
-            começar a escrever código.
+            Sigo fazendo formatação, limpeza e manutenção de computadores como freelance, e já montei painéis elétricos na
+            Volga Engenharia. Hoje curso Análise e Desenvolvimento de Sistemas na UNINTER e procuro vaga como
+            desenvolvedor.
           </p>
         </div>
       </div>

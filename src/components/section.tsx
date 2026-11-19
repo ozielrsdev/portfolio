@@ -21,7 +21,7 @@ export function Section({ id, eyebrow, title, description, className, children, 
               {eyebrow}
             </p>
           ) : null}
-          <h2 id={titleId} className="text-h2">
+          <h2 id={titleId} className="section-title text-h2">
             {title}
           </h2>
           {description ? <p className="text-lead text-muted-foreground">{description}</p> : null}

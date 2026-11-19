@@ -1,6 +1,6 @@
 # Design System — Portfólio Oziel Sousa
 
-**Direção:** paleta e tom da *Campo Aberto* (fazenda, trator, caminhonete: calmo, confiável, robusto) com a tipografia da *Pista* (automotivo, direto, caixa alta condensada).
+**Direção:** direto e prático. Visual sóbrio, sem metáforas (nada de carro, estrada ou campo): títulos em caixa alta condensada, verde e azul frios para as ações e o amarelo como única assinatura quente.
 
 **Fonte da verdade:** `src/app/globals.css`. Vitrine viva: rota `/design-system` (fora do índice de buscadores).
 
@@ -16,11 +16,11 @@ Todos os tokens seguem a convenção do shadcn/ui e viram utilitários do Tailwi
 | `foreground` | `#0c0a09` | `#fafaf9` | Texto principal, títulos |
 | `card` / `popover` | `#ffffff` | `#1c1917` | Superfícies elevadas: cards, menu mobile |
 | `muted` | `#f5f5f4` | `#292524` | Fundos discretos: tags, blocos de código, rodapé de card |
-| `muted-foreground` | `#57534e` | `#a8a29e` | Texto secundário: descrições, legendas, eyebrows |
+| `muted-foreground` | `#57534e` | `#a8a29e` | Texto secundário: descrições, legendas |
 | `accent` | `#f5f5f4` | `#292524` | **Só hover** de itens de navegação e botões fantasma (convenção shadcn) |
-| `primary` | `#1f7a3a` verde trator | `#4ade80` | A ação mais importante da tela, links de texto, anel de foco |
-| `secondary` | `#1e3a8a` azul Ford | `#93b4f5` | Segunda ação ("Fale comigo"); nunca concorre com a primária na mesma linha mais de uma vez |
-| `highlight` | `#facc15` amarelo colheita | `#fde047` | Assinatura da marca: traço do eyebrow, ponto do logo, selo "Solo", seleção de texto |
+| `primary` | `#1f7a3a` verde | `#4ade80` | A ação mais importante da tela, links de texto, anel de foco |
+| `secondary` | `#1e3a8a` azul | `#93b4f5` | Segunda ação ("Fale comigo"); nunca concorre com a primária na mesma linha mais de uma vez |
+| `highlight` | `#facc15` amarelo | `#fde047` | Assinatura da marca: traço da linha de abertura do hero, ponto do logo, selo "Solo", seleção de texto |
 | `border` | `#e7e5e4` | `#292524` | Divisórias e contornos de card |
 | `input` | `#78716c` | `#78716c` | Contorno de campos de formulário (≥ 3:1) |
 | `ring` | `#1f7a3a` | `#4ade80` | Contorno de foco do teclado |
@@ -28,9 +28,9 @@ Todos os tokens seguem a convenção do shadcn/ui e viram utilitários do Tailwi
 | `warning` | `#b45309` | `#fbbf24` | Atenção |
 | `destructive` | `#b91c1c` | `#f87171` | Erro |
 
-Neutros: escala **stone** (cinzas quentes, de terra) do Tailwind, 50–950.
+Neutros: escala **stone** (cinzas quentes) do Tailwind, 50–950.
 
-**Por que essas cores:** o verde e o azul são análogos e frios (calma, confiança); o amarelo é o contraponto quente (energia, criatividade). É a dupla verde e amarelo da John Deere com o azul da Ford.
+**Por que essas cores:** o verde e o azul são análogos e frios (calma, confiança); o amarelo é o contraponto quente (energia, criatividade), usado com parcimônia.
 
 **Por que `highlight` e não `accent`:** no shadcn, `accent` é a superfície de hover de menus e botões. Colocar o amarelo ali deixaria todo hover amarelo. A cor da marca ganhou um token próprio.
 
@@ -53,9 +53,9 @@ Neutros: escala **stone** (cinzas quentes, de terra) do Tailwind, 50–950.
 
 | Papel | Fonte | Pesos | Utilitário |
 |---|---|---|---|
-| Títulos | **Barlow Condensed**: inspirada nas placas de rodovia, legível em velocidade | 700 | `font-heading` (h1–h3 já usam por padrão, em caixa alta) |
+| Títulos | **Barlow Condensed**: condensada e firme, legível em tamanhos grandes | 700 | `font-heading` (h1–h3 já usam por padrão, em caixa alta) |
 | Texto | **Barlow** | 400, 600 | `font-sans` (padrão) |
-| Código, eyebrows, tags | **JetBrains Mono** | 400 (sem preload) | `font-mono` |
+| Código, linha de abertura do hero, tags | **JetBrains Mono** | 400 (sem preload) | `font-mono` |
 
 Carregadas com `next/font` (servidas pelo próprio domínio, `font-display: swap`, fallback com métricas ajustadas para não haver salto de layout). **Só os pesos realmente usados:** cada arquivo de fonte pré-carregado atrasa o LCP no celular. `font-medium` (500) cai para 400 por ausência do peso — use `font-semibold` quando quiser ênfase.
 
@@ -84,10 +84,11 @@ Regras: texto corrido nunca abaixo de 16px; linhas com no máximo ~70 caracteres
 
 ## 4. Forma, profundidade e movimento
 
-- **Raio base 8px** (`--radius`). Cards `rounded-xl` (12px), botões `rounded-lg` (8px), selos em pílula. É o meio-termo entre os títulos retos da *Pista* e a suavidade da *Campo Aberto*.
+- **Raio base 8px** (`--radius`). Cards `rounded-xl` (12px), botões `rounded-lg` (8px), selos em pílula. É o meio-termo entre os títulos retos e uma superfície acolhedora.
 - **Sombras suaves e quentes:** `shadow-card` em repouso, `shadow-card-hover` no hover do card. Nada de sombras pretas duras.
 - **Ícones:** Lucide, traço uniforme, sempre `aria-hidden` quando há texto ao lado; dentro de botões use `data-icon="inline-start|inline-end"`, sem classes de tamanho.
-- **Movimento:** curto e com propósito. Hover em 150–300ms. Blocos entram ao rolar com a classe `reveal` (CSS scroll-driven animations, zero JS, só onde há suporte). `animate-rise` (500ms, `ease-out-quart`) fica só para elementos secundários do hero. Nunca animar largura/altura. Com `prefers-reduced-motion`, animações e rolagem suave são desligadas globalmente.
+- **Movimento — tese "montagem":** cada peça encaixa no lugar com um movimento preciso (`ease-out-expo`), sem quique. Momento principal no hero: o traço se desenha sob "sistemas web" (`.hero-accent`) e as linhas do Resumo encaixam uma a uma (`.summary-row`, 70ms entre linhas). Ao rolar, via `ScrollMotion` (`components/scroll-motion.tsx`: IntersectionObserver + rolagem com rAF, funciona igual em Chrome, Firefox/Zen e Safari): um traço curto se desenha sob cada título de seção (`.section-title`), os cards de projeto e os itens da Trajetória entram (`.reveal`, `--i` escalona), as tags da Stack e os botões do Contato encaixam em sequência (`.slots` > `.slot`), o trilho da Trajetória cresce com a ponta parada a 60% da tela e cada ponto acende quando ela chega (`.timeline`, `--rail`, `.timeline-dot.is-lit`), a placa amarela desliza para trás da foto (`.photo-plate`). As regras de rolagem só valem com `.js-motion` no `<html>` (posto pelo `ScrollMotion` quando há JS e sem movimento reduzido); sem isso, tudo fica no estado final. Respostas a ações: seção atual marcada no menu (`NavLinks` + `.nav-link`), tema novo se espalha em círculo a partir do botão (View Transitions), menu do celular desliza (`.sheet`, entra em 320ms, sai em 180ms), confirmação de "e-mail copiado" (`.copy-ok`), setas de link andam no hover (`.nudge`). O texto do hero nunca some. Nunca animar largura/altura.
+- **Movimento reduzido:** sem deslocamento (traço já pronto, menu e Resumo só com fade, ícone sem giro), mas as confirmações continuam visíveis. Não use um corte global de `0.01ms`: ele apaga o feedback junto.
 - **Nunca anime a opacidade do texto principal acima da dobra** (título e parágrafo do hero): ele vira o LCP e a animação atrasa a métrica e esconde conteúdo em conexões lentas.
 
 ## 5. Componentes
@@ -98,7 +99,7 @@ Regras: texto corrido nunca abaixo de 16px; linhas com no máximo ~70 caracteres
 | `Card` | `components/ui/card.tsx` (shadcn) | Use a composição completa: `CardHeader`/`CardTitle`/`CardDescription`/`CardContent`/`CardFooter`. |
 | `Badge` | `components/ui/badge.tsx` (shadcn) | Variantes extras: `highlight` (selo de marca) e `tech`. |
 | `TechTag` | `components/tech-tag.tsx` | Atalho para `Badge variant="tech"`. |
-| `Section` | `components/section.tsx` | `<section>` com âncora, `aria-labelledby`, eyebrow, título h2 e descrição. |
+| `Section` | `components/section.tsx` | `<section>` com âncora, `aria-labelledby`, título h2 e descrição opcional. Não use `eyebrow` (rótulo acima do título) nas seções do site: o título fala sozinho. |
 | `ProjectCard` | `components/project-card.tsx` | Problema → solução → minha parte → resultado (opcional) → stack → links. |
 | `Navbar` / `MobileNav` | `components/navbar.tsx`, `mobile-nav.tsx` | Âncoras da página única; menu mobile com a **Popover API nativa** (`popover`/`popovertarget`): foco, Esc e clique fora vêm do navegador. |
 | `ThemeToggle` | `components/theme-toggle.tsx` | Alterna `.dark` no `<html>` e salva em `localStorage`. O tema inicial é aplicado por script inline antes da pintura (sem flash). |

@@ -19,7 +19,7 @@ export function CopyEmailButton({ email }: { email: string }) {
 
   return (
     <button type="button" onClick={copy} className={buttonVariants({ variant: 'outline', size: 'lg' })}>
-      {copied ? <CheckIcon data-icon="inline-start" aria-hidden /> : <CopyIcon data-icon="inline-start" aria-hidden />}
+      {copied ? <CheckIcon data-icon="inline-start" className="copy-ok" aria-hidden /> : <CopyIcon data-icon="inline-start" aria-hidden />}
       <span aria-live="polite">{copied ? 'E-mail copiado' : 'Copiar e-mail'}</span>
     </button>
   )

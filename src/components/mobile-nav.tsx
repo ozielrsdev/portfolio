@@ -31,7 +31,7 @@ export function MobileNav() {
         ref={menuRef}
         id={MENU_ID}
         popover="auto"
-        className="fixed inset-y-0 right-0 left-auto m-0 h-dvh max-h-none w-4/5 max-w-sm border-l bg-popover p-4 text-popover-foreground shadow-lg backdrop:bg-foreground/30 md:hidden"
+        className="sheet fixed inset-y-0 right-0 left-auto m-0 h-dvh max-h-none w-4/5 max-w-sm border-l bg-popover p-4 text-popover-foreground shadow-lg md:hidden"
       >
         <div className="flex items-center justify-between">
           <p className="font-heading text-xl font-bold uppercase">Navegação</p>
