@@ -24,10 +24,17 @@ export function Projects() {
         href={PROFILE.links.github}
         target="_blank"
         rel="noopener noreferrer"
-        className={cn(buttonVariants({ variant: 'link' }), 'self-start px-0')}
+        className={cn(buttonVariants({ variant: 'link' }), 'h-auto min-h-11 self-start px-0 text-left whitespace-normal')}
       >
-        Mais projetos no meu GitHub (Eco-Points, FeelAI e outros)
-        <ArrowUpRightIcon data-icon="inline-end" aria-hidden />
+        {/* Seta dentro do texto, presa à última palavra: no celular o link quebra linha e ela acompanha o fim da frase. */}
+        <span>
+          Mais projetos no meu GitHub (Eco-Points, FeelAI e{' '}
+          <span className="whitespace-nowrap">
+            outros)
+            <ArrowUpRightIcon className="ml-1 inline size-4 align-[-0.125em]" aria-hidden />
+          </span>
+          <span className="sr-only"> (abre em nova aba)</span>
+        </span>
       </a>
     </Section>
   )

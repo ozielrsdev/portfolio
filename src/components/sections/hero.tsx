@@ -70,7 +70,7 @@ export function Hero() {
               {SPECS.map(({ label, value }) => (
                 <div key={label} className="flex items-baseline justify-between gap-4 py-2.5">
                   <dt className="text-muted-foreground uppercase">{label}</dt>
-                  <dd className="text-right font-medium">{value}</dd>
+                  <dd className="text-right">{value}</dd>
                 </div>
               ))}
             </dl>

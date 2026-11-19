@@ -174,6 +174,10 @@
   h1, h2, h3 {
     @apply font-heading font-bold uppercase text-balance;
   }
+  /* Evita uma palavra sozinha na última linha dos parágrafos. */
+  p, dd {
+    text-wrap: pretty;
+  }
   ::selection {
     @apply bg-highlight text-highlight-foreground;
   }

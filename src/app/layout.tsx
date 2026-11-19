@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Barlow, Barlow_Condensed, JetBrains_Mono } from 'next/font/google'
 import { PROFILE, SEO, SITE_URL } from '@/content/site'
+import { THEME_COLORS } from '@/lib/theme'
 import { cn } from '@/lib/utils'
 import './globals.css'
 
@@ -55,13 +56,14 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#fafaf9' },
-    { media: '(prefers-color-scheme: dark)', color: '#0c0a09' },
+    { media: '(prefers-color-scheme: light)', color: THEME_COLORS.light },
+    { media: '(prefers-color-scheme: dark)', color: THEME_COLORS.dark },
   ],
 }
 
 // Aplica o tema salvo (ou o do sistema) antes da primeira pintura, evitando o flash de tema errado.
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d)}catch(e){}})()`
+// Também alinha a cor da barra do navegador ao tema escolhido; as <meta> podem vir depois deste script, daí o DOMContentLoaded.
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d);var c=d?'${THEME_COLORS.dark}':'${THEME_COLORS.light}';var s=function(){document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.content=c})};s();document.addEventListener('DOMContentLoaded',s)}catch(e){}})()`
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
