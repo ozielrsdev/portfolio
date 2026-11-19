@@ -34,3 +34,7 @@ next-env.d.ts
 
 # Python (scripts de skills)
 __pycache__/
+
+# Impeccable: capturas e sessões temporárias (a configuração em .impeccable/live/config.json é versionada)
+.impeccable/review/
+.impeccable/live/sessions/
